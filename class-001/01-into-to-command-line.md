@@ -4,21 +4,18 @@ The command line is a text-based interface for interacting with your computer. F
 
 ## Setup
 
-
 On a Mac you can access the command line by opening up the `Terminal` application, located in `/Applications/Utilities/Terminal`
 
-To get started on Windows you will need to set up the Windows Subsystem for Linux, which allows you to run Ubuntu (a Linux distribution) from within your current Windows 10 installation.  [Follow this guide to do so](https://tutorials.ubuntu.com/tutorial/tutorial-ubuntu-on-windows). Alternatively, you can install [Git for Windows](https://gitforwindows.org/) which includes many of the commands I'll be covering below.
-
+To get started on Windows you will need to set up the Windows Subsystem for Linux, which allows you to run Ubuntu (a Linux distribution) from within your current Windows 10 installation. [Follow this guide to do so](https://tutorials.ubuntu.com/tutorial/tutorial-ubuntu-on-windows). Alternatively, you can install [Git for Windows](https://gitforwindows.org/) which includes many of the commands I'll be covering below.
 
 ---
-
 
 ## The Prompt
 
 When you open up your terminal application you'll see something like this:
 
 ```bash
-sam@SamsComputer ~ % 
+sam@SamsComputer ~ %
 ```
 
 This is called the "prompt". By default (on a Mac) it shows your username, an `@` symbol, the name of your computer, the directory that you are currently in, and then a `%` sign.
@@ -31,14 +28,13 @@ Whatever you type will start appearing after the end of the prompt line.
 
 ## Basic Navigation & File Operations
 
-*Please note I use the word "directory" and "folder" interchangeably.*
+_Please note I use the word "directory" and "folder" interchangeably._
 
 When you open a new terminal window, you are placed inside your home folder. On a Mac this is `/Users/myusername` and on Linux, `/home/myusername`.
 
 To see the folder you are currently in, type: `pwd` and hit return. `pwd` stands for "print working directory", or in other words, "show me the directory I am currently working from".
 
 ### Getting around, making, deleting and copying files and folders.
-
 
 **`pwd`** stands for "print working directory". It prints out where you are:
 
@@ -66,7 +62,6 @@ cd ..
 
 If you type `cd` without a folder name after, it takes you back to your home folder.
 
-
 **`mkdir`** stands for "make directory". Type `mkdir` and then a name to make a folder. For example, make a folder called "cool_project":
 
 ```bash
@@ -92,7 +87,6 @@ rm bad_selfie.jpg
 ```
 
 Please note, `rm` will **not** ask for confirmation, and it will not move files to the trash. It'll just delete them immediately, so be careful.
-
 
 **`file`** provides basic info about a file:
 
@@ -144,12 +138,12 @@ Finally, the `~` symbol refers to your home folder.
 
 It can take a while to get used to the command line, but there are a few tips and trick that make it much easier to use.
 
-* Use the up and down arrows to view a history of the commands you have entered.
-* Hit the tab key to autocomplete commands and file paths
-* Type `open` and then a filename to open the file in its default program
-* Type `open .` to open the current folder in the Finder
-* Drag a folder or file onto the terminal to fill in its absolute path
-* Type `ctrl-a` to move your cursor to the beginning of the line, and `ctrl-e` to the end
+- Use the up and down arrows to view a history of the commands you have entered.
+- Hit the tab key to autocomplete commands and file paths
+- Type `open` and then a filename to open the file in its default program
+- Type `open .` to open the current folder in the Finder
+- Drag a folder or file onto the terminal to fill in its absolute path
+- Type `ctrl-a` to move your cursor to the beginning of the line, and `ctrl-e` to the end
 
 ---
 
@@ -166,8 +160,8 @@ cat manifesto.txt
 ```bash
 more manifesto.txt
 ```
-(now use the up and down arrows to go up or down by a line, the space to go down by a page and `q` to exit if needed)
 
+(now use the up and down arrows to go up or down by a line, the space to go down by a page and `q` to exit if needed)
 
 **`sort`** sorts a file alphabetically by line and prints the output to the screen
 
@@ -180,12 +174,12 @@ sort names.txt
 ```bash
 grep Communist manifesto.txt
 ```
----
 
+---
 
 ## Command Line Options and Getting Help
 
-Most commands have extra options that you can input when you run the command.  They are usually preceded by either one or two dashes (`-` or `--`).
+Most commands have extra options that you can input when you run the command. They are usually preceded by either one or two dashes (`-` or `--`).
 
 The structure of a typical command looks like this:
 
@@ -221,13 +215,11 @@ say "a specter is haunting this computer"
 
 Sometimes options have parameters. For example, the `say` command allows you to change its voice with the `-v` option, followed by the name of a computer voice.
 
-
 ```bash
 say -v Amelie "the specter of communism"
 ```
 
 You can change the rate at which words are spoken using `-r NUM` where `NUM` is a number.
-
 
 ```bash
 say -v Amelie "the specter of communism" -r 100
@@ -315,7 +307,7 @@ By default, `sed` is case sensitive. To make it case insensitive, add an `i` at 
 sed 's/you/me/gi' sometext.txt
 ```
 
-Sometimes, I'll just find something online that seems useful without really understanding how it works. You should definitely give this a shot. For example, here's how you use `sed` to split a text into sentences: 
+Sometimes, I'll just find something online that seems useful without really understanding how it works. You should definitely give this a shot. For example, here's how you use `sed` to split a text into sentences:
 
 ```bash
 sed 's/[.!?]  */&\n/g' manifesto.txt
@@ -323,13 +315,11 @@ sed 's/[.!?]  */&\n/g' manifesto.txt
 
 You can do a ton of other stuff with `sed`. If you want to learn more, take a look at this [tutorial](https://www.digitalocean.com/community/tutorials/the-basics-of-using-the-sed-stream-editor-to-manipulate-text-in-linux)
 
-
 ---
 
 ## Downloading stuff
 
 There are two very useful commands for downloading stuff from the internet.
-
 
 ### cURL
 
@@ -377,7 +367,6 @@ wget "https://www.gutenberg.org/cache/epub/61/pg61.txt" -O manifesto.txt
 
 ---
 
-
 ## Wildcards
 
 It's possible to reference multiple files using the `*` character in combination with other characters. This can be really useful in a lot of situations.
@@ -406,3 +395,9 @@ Combine all text files in a folder:
 ```
 cat *.txt > everything.txt
 ```
+
+## Install uv & homebrew (mac)
+
+On a mac, install [Homebrew](https://brew.sh/)
+
+On both mac and windows, [install UV](https://docs.astral.sh/uv/getting-started/installation/)
