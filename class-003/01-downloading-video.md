@@ -73,5 +73,5 @@ yt-dlp [URL] --merge-output-format mp4
 Always be sure that your version of yt-dlp is updated. To keep it fresh, use pip's update command (the `-U`):
 
 ```
-pip3 install -U yt-dlp
+uv tool upgrade yt-dlp
 ```
