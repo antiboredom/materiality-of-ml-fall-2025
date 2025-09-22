@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      async function main() {
+        const response = await fetch("top_reddit.json");
+        const items = await response.json();
+
+        for (let item of items) {
+          let el = document.createElement("h1");
+          el.textContent = item.title;
+          document.body.appendChild(el);
+        }
+      }
+
+      main();
+    </script>
+  </body>
+</html>
