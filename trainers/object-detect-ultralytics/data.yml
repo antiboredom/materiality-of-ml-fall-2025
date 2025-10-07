@@ -1,0 +1,7 @@
+path: /FULL/PATH/TO/DATSET/FOLDER/
+train: train/images
+val: valid/images
+test: test/images
+
+# a list of object types
+names: ["police"]
