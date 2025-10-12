@@ -1,0 +1,12 @@
+[project]
+name = "moonbeam"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "accelerate>=1.10.0",
+    "pillow>=11.0.0",
+    "torch>=2.7.0",
+    "transformers>=4.51.1",
+]
