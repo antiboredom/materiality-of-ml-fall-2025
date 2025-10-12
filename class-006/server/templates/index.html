@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Flask demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.js"></script>
+  </head>
+  <body>
+    <script>
+      let capture;
+      let sendButton;
+      let canvas;
+      let topPrediction;
+
+      let fileInput;
+
+      let textArea;
+
+      function setup() {
+        canvas = createCanvas(640, 480);
+        capture = createCapture(VIDEO, { flipped: true });
+        capture.size(640, 480);
+        capture.hide(); // Hide the default video element
+
+        sendButton = createButton("Classify Image");
+        sendButton.mousePressed(sendImage);
+
+        fileInput = createFileInput(uploadFile, true);
+
+        textArea = createElement("textarea", "", "");
+        let textAreaButton = createButton("Classify Text");
+        textAreaButton.mousePressed(classifyText);
+      }
+
+      function draw() {
+        background(220);
+        image(capture, 0, 0, width, height); // Draw the video feed on the canvas
+
+        textSize(32);
+        fill(255, 0, 0);
+        textAlign(CENTER, CENTER);
+        text(topPrediction, width / 2, height / 2);
+      }
+
+      async function sendImage() {
+        // Convert the canvas to a data URL (base64 encoded image)
+
+        const blob = await new Promise((resolve) =>
+          canvas.elt.toBlob(resolve, "image/jpeg", 0.95),
+        );
+
+        // Create FormData and send to server
+        const formData = new FormData();
+        formData.append("file", blob, "capture.jpg");
+
+        const response = await fetch("/classify_image", {
+          method: "POST",
+          body: formData,
+        });
+
+        const data = await response.json();
+        topPrediction = data.predictions[0].label;
+      }
+
+      async function uploadFile(file) {
+        const formData = new FormData();
+        formData.append("file", fileInput.elt.files[0]);
+        const response = await fetch("/classify_image", {
+          method: "POST",
+          body: formData,
+        });
+
+        const data = await response.json();
+        topPrediction = data.predictions[0].label;
+      }
+
+      async function classifyText() {
+        const text = textArea.elt.value;
+
+        const response = await fetch("/classify_text", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ text: text }),
+        });
+
+        const data = await response.json();
+        console.log(data);
+      }
+    </script>
+  </body>
+</html>
